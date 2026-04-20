@@ -8,4 +8,4 @@ Simple program in golang to download all your favorite mangas on [mangaread](htt
 - Run the command `mgr-gorg <your-manga> <chapters you want>` (in this example `mgr-gorg we-never-learn 1 2 3 4 5`)
 - A folder with the same name as your manga will appear in your current working directory with the individual jpgs themselves along with their respective .cbz files
 
-> Note: This project is very much untested so feel free to open any issues if you find any or if you are willing then you can even open a pull request, all (expect AI) are welcome :)
+> Note: This project is very much untested so feel free to open any issues if you find any or if you are willing then you can even open a pull request, all (except AI) are welcome :)
