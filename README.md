@@ -1,6 +1,11 @@
 # mgr-gorg
 Simple program in golang to download all your favorite mangas on [mangaread](https://mangaread.org)
 
+## How to build
+```sh
+go build -ldflags="-s -w" -o ./bin/mgr-gorg ./src/
+```
+
 ## How to use
 - Go to [mangaread](https://mangaread.org)
 - Navigate to the manga you want to download (*for example - https://www.mangaread.org/manga/we-never-learn/*)
