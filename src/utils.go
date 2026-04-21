@@ -11,18 +11,17 @@ import (
 	"path"
 )
 
-func compile_regex(URLS_REGEX string) *ex.Regex {
-  regex, err := ex.Compile(URLS_REGEX)
-  if err != nil {
-    fmt.Printf("Error while compiling regex: %v\n", err.Error())
-    os.Exit(1)
+func get_html(ctx context.Context, manga string, ch string) (*os.File, error) {
+  var pattern string
+
+  ch_url := BASE_URL + manga + "/"
+
+  if ch == "" {
+    pattern = BASE_HTML_PATTERN
+  } else {
+    ch_url += CH_PREFIX + ch + "/"
+    pattern = CH_HTML_PATTERN
   }
-
-  return regex
-}
-
-func get_base_html(ctx context.Context, manga string, ch string) (*os.File, error) {
-  ch_url := BASE_URL + manga + CH_PREFIX + ch + "/"
 
   response, err := client.Get(ch_url)
   if err != nil { return nil, err }
@@ -31,7 +30,7 @@ func get_base_html(ctx context.Context, manga string, ch string) (*os.File, erro
   body, err := io.ReadAll(response.Body)
   if err != nil { return nil, err }
 
-  file, err := os.CreateTemp(BASE_HTML_DIR, BASE_HTML_PATTERN)
+  file, err := os.CreateTemp(HTML_DIR, pattern)
   if err != nil { return nil, err }
 
   _, err = file.Write(body)

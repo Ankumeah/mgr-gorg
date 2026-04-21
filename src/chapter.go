@@ -18,6 +18,7 @@ func (ch *Chapter) Download(wg *sync.WaitGroup) {
   var page_wg sync.WaitGroup
 
   for i, url := range ch.Urls {
+    i, url := i, url
     page_wg.Add(1)
     go func() {
       err := get_page(&page_wg, url, get_save_path(ch.Manga, ch.Chapter, i + 1))
@@ -34,6 +35,5 @@ func (ch *Chapter) Download(wg *sync.WaitGroup) {
   if err != nil {
     fmt.Printf("Error while zipping chapter: %v\n", err.Error())
   }
-  fmt.Print("Zipped..")
-  fmt.Print("\n\n")
+  fmt.Println("Zipped..")
 }
